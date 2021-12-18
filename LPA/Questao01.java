@@ -5,25 +5,60 @@ import java.util.Scanner;
 public class Questao01 {
 
 	public static void main(String[] args) {
+		double v1 = obterNota(),
+				v2 = obterNota(),
+				v3 = obterNota(),
+				v4 = obterNota(),
+				v5 = obterNota(),
+				v6 = obterNota();
+		double media1 = primeiraUnidade(v1, v2, v3), 
+				media2 = segundaUnidade(v4, v5, v6),
+				media = mediaFinal(media1, media2);
+		
+		imprimir(resultadoFinal(media));
+
+	}
+	
+	public static double obterNota() {
 		Scanner sc = new Scanner(System.in);
-        double valor1, valor2, mediaPonderada;
-        System.out.println("Usuário, digite o primeiro valor num intervalo de 0 a 10: ");
-        valor1 = sc.nextDouble();
-        System.out.println("Usuário, digite o segundo valor num intervalo de 0 a 10: ");
-	     valor2 = sc.nextDouble();
-	     if (valor1 >= 0 && valor1 <= 10 && valor2 >= 0 && valor2 <= 10) { 
-	    	 mediaPonderada = ((valor1 * 3.8) + (valor2 * 6.2))/ (3.8 + 6.2);
-	    	 if (mediaPonderada >= 6) {
-				 System.out.println("Aprovado! Sua média é final " + mediaPonderada);
-			 } else {
-				 System.out.println("Reprovado. Sua média final é " + mediaPonderada);
-			 }  
-	     } else {
-			 System.out.println("Valor incorreto informado");
-		 }
-		 
-		 sc.close();
+		double valorInformado = 0;
+		while (true) {
+			imprimir("Usuário, informe valor num intervalo fechado de 0 a 10:");
+			valorInformado = sc.nextDouble();
+			if (valorInformado > 0 && valorInformado <= 10) {
+				return valorInformado;
+			}
+		} 
+	}
+	
+	public static void imprimir(String arg) {
+		System.out.println(arg);
+	}
+
+
+	public static double  primeiraUnidade(double v1, double v2, double v3) {
+		return ((v1 * 2) + (v2 * 3) + (v3 * 5)) / (2 + 3 + 5);
+
+	}
+	
+	public static double  segundaUnidade(double v1, double v2, double v3) {
+		return ((v1 * 3) + (v2 * 3) + (v3 * 4)) / (3 + 3 + 4);
+
+	}
+	
+	public static double  mediaFinal(double v1, double v2) {
+		return (v1 + v2) / 2;
+
+	}
+	
+	public static String  resultadoFinal(double v1) {
+		if (v1 >= 6) return "APROVADO";
+		else return "REPROVADO";
 
 	}
 
+
+
 }
+
+
